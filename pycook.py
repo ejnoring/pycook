@@ -79,58 +79,7 @@ while True:
                 break
             else:
                 print("That item doesn't exist.")
-            #if cold_item == 'chocolate milk':
-            #    fridge.remove('chocolate milk')
-            #    inventory.append('chocolate milk')
-            #    print('You take the chocolate milk')
-            #elif cold_item == 'water':
-            #    fridge.remove('water')
-            #    inventory.append('water')
-            #    print('You take the water')
-            #elif cold_item == 'pepsi':
-            #    fridge.remove('Pepsi')
-            #    inventory.append('Pepsi')
-            #    print('You take the Pepsi.')
-            #elif cold_item == 'back':
-            #    break
-            #else:
-                #print('Nothing happens')
-    #elif loc == 'pantry':
-        #while True:
-            #if len('pantry') > 0:
-            #    print('In the pantry you see ', pantry, "Type 'back' to return.")
-            #    cold_item = input('What would you like to take? ').lower()
-            #else:
-            #    print('There is nothing in the fridge.')
-            #    break
-            #if validate_item(cold_item, 1, fridge = True):
-            #    update_fridge(cold_item, inventory)
-            #elif cold_item == 'back':
-            #    break
-            #else:
-            #    print("That item doesn't exist.")
-            #if validate_item(dry_item):
-            #    pantry.remove(dry_item)
-            #    inventory.append(dry_item)
-            #    print('You take the ' + dry_item)
-            #else:
-            #    print('No such item in pantry.')
-            #if dry_item == 'instant ramen':
-            #    pantry.remove('instant ramen')
-            #    inventory.append('instant ramen')
-            #    print('You take the ramen.')
-            #elif dry_item == 'chef boyardee':
-            #    pantry.remove('Chef Boyardee')
-            #    inventory.append('Chef Boyardee')
-            #    print('You take the Chef Boyardee.')
-            #elif dry_item == 'potato':
-            #    pantry.remove('potato')
-            #    inventory.append('potato')
-            #    print('You take the potato.')
-            #elif dry_item == 'back':
-            #    break
-            #else:
-                #print('Nothing happens')
+            
     elif loc == 'cook space':
         while True:
             cooker = input("Would you like to use the oven, or the stove? Type 'back' to return. ").lower()
