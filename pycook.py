@@ -7,7 +7,7 @@ level_content = {
             'pantry': ['instant ramen', 'chef boyardee', 'potato'],
             'fridge': ['water', 'chocolate milk', 'pepsi'],
             'correct_cooker': 'stove',
-            'correct_recipe': ['instant_ramen', 'water'],
+            'correct_recipe': ['instant ramen', 'water'],
             'min_cook_time': 2,
             'max_cook_time': 4,
             'name': 'Instant Ramen'
@@ -51,14 +51,14 @@ def cook_job(inventory, level):
                         if cooker == level_content[str(level)]['correct_cooker']:
                             ingreds.sort()
                             if ingreds == level_content[str(level)]['correct_recipe']:
-                                if int(cooktime)  < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time']:
+                                if int(cooktime) < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time'] and ingreds == level_content[str(level)]['correct_recipe']:
                                     print("The dish is successful.")
                                     dish_success = True
                                 elif int(cooktime) > level_content[str(level)]['max_cook_time']:
                                     print('The dish is burnt! Try again.')
                                 else:
                                     print('The dish is undercooked. Try again.')
-                            elif cooktime != 'back':
+                            elif cooktime != 'back' and ingreds != level_content[str(level)]['correct_recipe']:
                                 print('Incorrect ingredients. Try again.')
                         elif cooktime != 'back':
                             print('Incorrect cooker.')
