@@ -47,16 +47,20 @@ def cook_job(inventory, level):
                 elif item_to_cook == 'cook':
                     cooktime = ''
                     while cooktime != 'back' and not dish_success:
-                        cooktime = input('How long would you like to cook your dish for? (in minutes) ')
+                        cooktime = input('How long would you like to cook your dish for? (in minutes) Type "back" to go back. ')
                         if cooker == level_content[str(level)]['correct_cooker']:
-                            if int(cooktime)  < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time']:
-                                print("The dish is successful.")
-                                dish_success = True
-                            elif int(cooktime) > level_content[str(level)]['max_cook_time']:
-                                print('The dish is burnt! Try again.')
-                            else:
-                                print('The dish is undercooked. Try again.')
-                        else:
+                            ingreds.sort()
+                            if ingreds == level_content[str(level)]['correct_recipe']:
+                                if int(cooktime)  < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time']:
+                                    print("The dish is successful.")
+                                    dish_success = True
+                                elif int(cooktime) > level_content[str(level)]['max_cook_time']:
+                                    print('The dish is burnt! Try again.')
+                                else:
+                                    print('The dish is undercooked. Try again.')
+                            elif cooktime != 'back':
+                                print('Incorrect ingredients. Try again.')
+                        elif cooktime != 'back':
                             print('Incorrect cooker.')
                 else:
                     print("You don't have " + item_to_cook + '.')
