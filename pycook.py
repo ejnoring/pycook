@@ -111,7 +111,7 @@ level_content = {
             'max_cook_time': 18,
             'name': 'Chocolate Chip Cookies'
         },
-        '12': {
+        '13': {
             'pantry': ['chicken broth', 'corn syrup', 'pumpkin pie spice', 'onion', 'vegetable broth', 'egg noodles', ],
             'fridge': ['celery', 'chicken', 'orange juice' , 'carrots', 'Dr. Pepper'],
             'correct_cooker': 'stove',
@@ -120,7 +120,7 @@ level_content = {
             'max_cook_time': 40,
             'name': 'Chicken Noodle Soup'
         },
-        '13': {
+        '14': {
             'pantry': ['onion', 'carrots', 'honey', 'corn', 'cake mix'],
             'fridge': ['chicken breast', 'mushrooms', 'butter', 'chicken wings', 'milk'],
             'correct_cooker': 'stove',
@@ -129,7 +129,7 @@ level_content = {
             'max_cook_time': 14,
             'name': 'Smothered Chicken'
         },
-        '14': {
+        '15': {
             'pantry': ['onion', 'apples', 'A1' 'fajita seasoning'],
             'fridge': ['bell peppers', 'tortillas', 'romaine lettuce', 'steak', 'New Hampshire'],
             'correct_cooker': 'stove',
@@ -138,14 +138,50 @@ level_content = {
             'max_cook_time': 11,
             'name': 'Steak Fajitas'
         },
-        '15': {
-            'pantry': [],
-            'fridge': [],
-            'correct_cooker': '',
-            'correct_recipe': [],
-            'min_cook_time': ,
-            'max_cook_time': ,
-            'name': ''
+        '16': {
+            'pantry': ['onion', 'potato', 'banana', 'Grey Poupon', 'applesauce'],
+            'fridge': ['bacon', 'water', 'La Croix', 'eggs', 'bell peppers', 'tortillas'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['bacon', 'bell pepper', 'eggs', 'onion', 'potato', 'tortilla'],
+            'min_cook_time': 8,
+            'max_cook_time': 12,
+            'name': 'Breakfast Burrito'
+        },
+        '17': {
+            'pantry': ['bread', 'sugar', 'flour', 'onion', 'butter', 'hot sauce'],
+            'fridge': ['water', 'eggs', 'shrimp', 'milk'],
+            'correct_cooker': 'oven',
+            'correct_recipe': ['bread', 'butter', 'egg', 'milk', 'sugar'],
+            'min_cook_time': 20,
+            'max_cook_time': 30,
+            'name': 'Bread Pudding'
+        },
+        '18': {
+            'pantry': ['doritos', 'peanut butter', 'english muffin', 'nuetella', 'Bisquick'],
+            'fridge': ['hollandaise sauce', 'eggs', 'water'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['eggs', 'english muffin', 'hollandaise sauce', 'water'],
+            'min_cook_time': 6,
+            'max_cook_time': 7,
+            'name': 'Eggs Benedict'
+        },
+        '19': {
+            'pantry': ['pecans', 'peanuts', 'sugar', 'corn syrup', 'molasses', 'brown sugar', 'butter'],
+            'fridge': ['pie crust', 'ground beef', 'salsa'],
+            'correct_cooker': 'oven',
+            'correct_recipe': ['brown sugar', 'butter', 'corn syrup', 'pecans', 'pie crust'],
+            'min_cook_time': 40,
+            'max_cook_time': 60,
+            'name': 'Pecan Pie'
+        },
+        '20': {
+            'pantry': ['chicken stock', 'beef stock', 'vegetable broth', 'egg noodles', 'rice noodles', 'fish sauce', 'onion', 'potato'],
+            'fridge': ['beef sirloin', 'ginger', 'water', 'cilantro', 'parsley', 'green onion', 'basil', 'Coca-Cola', 'lettuce'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['basil', 'beef sirloin', 'beef stock', 'cilantro', 'fish sauce', 'ginger', 'green onion', 'onion', 'rice noodles', 'water'],
+            'min_cook_time': 120,
+            'max_cook_time': 600,
+            'name': 'Pho'    
     }
 
 def update_pantry(item, inventory):
