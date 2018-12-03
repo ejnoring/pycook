@@ -181,7 +181,7 @@ level_content = {
             'correct_recipe': ['basil', 'beef sirloin', 'beef stock', 'cilantro', 'fish sauce', 'ginger', 'green onion', 'onion', 'rice noodles', 'water'],
             'min_cook_time': 120,
             'max_cook_time': 600,
-            'name': 'Pho'    
+            'name': 'Pho'
     }}
 
 def update_pantry(item, inventory):
@@ -197,34 +197,40 @@ def update_fridge(item, inventory):
 def cook_job(inventory, level):
         ingreds = []
         item_to_cook = ''
-        cooker = input('What would you like to cook on, stove or oven? ').lower()
-        if cooker == 'stove' or cooker == 'oven':
-            dish_success = False
-            while item_to_cook != 'back' and not dish_success:
-                item_to_cook = input("What ingredients would you like to put in the pan? Enter one at a time. Type 'cook' to begin cooking. ").lower()
-                if item_to_cook in inventory:
-                    ingreds.append(item_to_cook)
-                    print('You have put', item_to_cook, 'in the pan.')
-                elif item_to_cook == 'cook':
-                    cooktime = ''
-                    while cooktime != 'back' and not dish_success:
-                        cooktime = input('How long would you like to cook your dish for? (in minutes) Type "back" to go back. ')
-                        if cooker == level_content[str(level)]['correct_cooker']:
-                            ingreds.sort()
-                            if ingreds == level_content[str(level)]['correct_recipe']:
-                                if int(cooktime) < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time'] and ingreds == level_content[str(level)]['correct_recipe']:
-                                    print("The dish is successful.")
-                                    dish_success = True
-                                elif int(cooktime) > level_content[str(level)]['max_cook_time']:
-                                    print('The dish is burnt! Try again.')
-                                else:
-                                    print('The dish is undercooked. Try again.')
-                            elif cooktime != 'back' and ingreds != level_content[str(level)]['correct_recipe']:
-                                print('Incorrect ingredients. Try again.')
-                        elif cooktime != 'back':
-                            print('Incorrect cooking instrument.')
-                else:
-                    print("You don't have " + item_to_cook + '.')
+        cooker = ''
+        while True:
+            cooker = input('What would you like to cook on, stove or oven? ').lower()
+            if cooker == 'stove' or cooker == 'oven':
+                dish_success = False
+            elif cooker == 'back':
+                break
+                while item_to_cook != 'back' and not dish_success:
+                    item_to_cook = input("What ingredients would you like to put in the pan? Enter one at a time. Type 'cook' to begin cooking. ").lower()
+                    if item_to_cook in inventory:
+                        ingreds.append(item_to_cook)
+                        print('You have put', item_to_cook, 'in the pan.')
+                    elif item_to_cook == 'cook':
+                        cooktime = ''
+                        while cooktime != 'back' and not dish_success:
+                            cooktime = input('How long would you like to cook your dish for? (in minutes) Type "back" to go back. ')
+                            if cooker == level_content[str(level)]['correct_cooker']:
+                                ingreds.sort()
+                                if ingreds == level_content[str(level)]['correct_recipe']:
+                                    if int(cooktime) < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time'] and ingreds == level_content[str(level)]['correct_recipe']:
+                                        print("The dish is successful.")
+                                        dish_success = True
+                                    elif int(cooktime) > level_content[str(level)]['max_cook_time']:
+                                        print('The dish is burnt! Try again.')
+                                    else:
+                                        print('The dish is undercooked. Try again.')
+                                elif cooktime != 'back' and ingreds != level_content[str(level)]['correct_recipe']:
+                                    print('Incorrect ingredients. Try again.')
+                            elif cooktime != 'back':
+                                print('Incorrect cooking instrument.')
+                    else:
+                        print("You don't have " + item_to_cook + '.')
+            else:
+                print('Please select either oven or stove.')
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
