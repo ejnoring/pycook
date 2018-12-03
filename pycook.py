@@ -182,7 +182,7 @@ level_content = {
             'min_cook_time': 120,
             'max_cook_time': 600,
             'name': 'Pho'    
-    }
+    }}
 
 def update_pantry(item, inventory):
         pantry.remove(item)
