@@ -198,12 +198,10 @@ def cook_job(inventory, level):
         ingreds = []
         item_to_cook = ''
         cooker = ''
+        cooker = input('What would you like to cook on, stove or oven? ').lower()
         while True:
-            cooker = input('What would you like to cook on, stove or oven? ').lower()
             if cooker == 'stove' or cooker == 'oven':
                 dish_success = False
-            elif cooker == 'back':
-                break
                 while item_to_cook != 'back' and not dish_success:
                     item_to_cook = input("What ingredients would you like to put in the pan? Enter one at a time. Type 'cook' to begin cooking. ").lower()
                     if item_to_cook in inventory:
@@ -228,7 +226,7 @@ def cook_job(inventory, level):
                             elif cooktime != 'back':
                                 print('Incorrect cooking instrument.')
                     else:
-                        print("You don't have " + item_to_cook + '.')
+                        print("You don't have " + item_to_cook + '.')    
             else:
                 print('Please select either oven or stove.')
 
