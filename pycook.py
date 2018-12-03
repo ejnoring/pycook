@@ -13,14 +13,139 @@ level_content = {
             'name': 'Instant Ramen'
         },
         '2': {
-            'pantry': ['instant ramen', 'chef boyardee', 'potato'],
-            'fridge': ['water', 'chocolate milk', 'pepsi'],
+            'pantry': ['macaroni', 'stuffing', 'beef jerky', 'cheese'],
+            'fridge': ['water', 'apple juice', 'eggs'],
             'correct_cooker': 'stove',
-            'correct_recipe': [],
+            'correct_recipe': ['cheese', 'macaroni', 'water'],
+            'min_cook_time': 6,
+            'max_cook_time': 10,
+            'name': 'Kraft Mac'
+        },
+        '3': {
+            'pantry': ['ketchup', 'onion', 'garlic'],
+            'fridge': ['fish sticks', 'chicken strips'],
+            'correct_cooker': 'oven',
+            'correct_recipe': ['fish sticks'],
+            'min_cook_time': 10,
+            'max_cook_time': 15,
+            'name': 'Fish Sticks'
+        },
+        '4': {
+            'pantry': ['soy sauce', 'creamed corn', 'bread'],
+            'fridge': ['almond milk', 'cheese', 'butter'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['bread', 'butter', 'cheese'],
             'min_cook_time': 2,
-            'max_cook_time': 5,
-            'name': 'Cheeks'
-        }
+            'max_cook_time': 4,
+            'name': 'Grilled Cheese'
+        },
+        '5': {
+            'pantry': ['canned soup', 'carrots'],
+            'fridge': ['eggs', 'vegetable tray'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['eggs'],
+            'min_cook_time': 1,
+            'max_cook_time': 2,
+            'name': 'Sunny Side Up Eggs'
+        },
+        '6': {
+            'pantry': ['breadcrumb', 'hot sauce', 'grass', 'spaghetti'],
+            'fridge': ['cheese', 'ground beef', 'mayo', 'water', 'eggs'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['breadcrumb', 'eggs', 'ground beef', 'spaghetti', 'water'],
+            'min_cook_time': 6,
+            'max_cook_time': 10,
+            'name': 'Spaghetti and Meatballs'
+        },
+        '7': {
+            'pantry': ['hamburger buns', 'hotdog buns', 'soy sauce'],
+            'fridge': ['chicken breast', 'beef patty', 'cheese', 'asparagus'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['beef patty', 'cheese', 'hamburger buns'],
+            'min_cook_time': 5,
+            'max_cook_time': 8,
+            'name': 'Cheeseburger'
+        },
+        '8': {
+            'pantry': ['cookies', 'lasanga sheets', 'beans', 'tomato sauce'],
+            'fridge': ['ground beef', 'mozzarella', 'Hy-Vee Cola'],
+            'correct_cooker': 'oven',
+            'correct_recipe': ['ground beef', 'lasagna sheets', 'mozzarella', 'tomato sauce'],
+            'min_cook_time': 10,
+            'max_cook_time': 15,
+            'name': 'Lasagna'
+        },
+        '9': {
+            'pantry': ['mayo', 'taco shells', 'butter'],
+            'fridge': ['ground beef', 'tomato', 'brown gravy', 'cheese'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['cheese', 'ground beef', 'taco shells', 'tomato'],
+            'min_cook_time': 5,
+            'max_cook_time': 8,
+            'name': 'Tacos'
+        },
+        '10': {
+            'pantry': ['chili powder', 'beef broth', 'corn nuts', 'beans', 'onion', 'book'],
+            'fridge': ['lettuce', 'ground beef', 'strawberry', 'tomato'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['beans', 'beef broth', 'chili powder', 'ground beef', 'onion', 'tomato'],
+            'min_cook_time': 15,
+            'max_cook_time': 30,
+            'name': 'Chili'
+        },
+        '11': {
+            'pantry': ['potato', 'onion', 'wheat', 'rice', 'soy sauce', 'english muffin'],
+            'fridge': ['peas', 'carrots', 'eggs', 'green onion'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['carrots', 'eggs', 'green onion', 'onion', 'peas', 'rice', 'soy sauce'],
+            'min_cook_time': 10,
+            'max_cook_time': 15,
+            'name': 'Fried Rice'
+        },
+        '12': {
+            'pantry': ['sugar', 'brown sugar', 'chili powder', 'flour', 'cumin', 'baking soda', 'vanilla'],
+            'fridge': ['butter', 'eggs', 'ribeye' , 'chocolate chips'],
+            'correct_cooker': 'oven',
+            'correct_recipe': ['baking soda', 'brown sugar', 'butter', 'chocolate chips', 'eggs', 'flour', 'vanilla'],
+            'min_cook_time': 13,
+            'max_cook_time': 18,
+            'name': 'Chocolate Chip Cookies'
+        },
+        '12': {
+            'pantry': ['chicken broth', 'corn syrup', 'pumpkin pie spice', 'onion', 'vegetable broth', 'egg noodles', ],
+            'fridge': ['celery', 'chicken', 'orange juice' , 'carrots', 'Dr. Pepper'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['carrots', 'celery', 'chicken', 'chicken broth', 'eggs noodles', 'onion', 'vegetable broth'],
+            'min_cook_time': 20,
+            'max_cook_time': 40,
+            'name': 'Chicken Noodle Soup'
+        },
+        '13': {
+            'pantry': ['onion', 'carrots', 'honey', 'corn', 'cake mix'],
+            'fridge': ['chicken breast', 'mushrooms', 'butter', 'chicken wings', 'milk'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['butter', 'chicken breast', 'mushrooms', 'onion'],
+            'min_cook_time': 10,
+            'max_cook_time': 14,
+            'name': 'Smothered Chicken'
+        },
+        '14': {
+            'pantry': ['onion', 'apples', 'A1' 'fajita seasoning'],
+            'fridge': ['bell peppers', 'tortillas', 'romaine lettuce', 'steak', 'New Hampshire'],
+            'correct_cooker': 'stove',
+            'correct_recipe': ['bell pepper', 'fajita seasoning', 'onion', 'steak', 'tortilla'],
+            'min_cook_time': 7,
+            'max_cook_time': 11,
+            'name': 'Steak Fajitas'
+        },
+        '15': {
+            'pantry': [],
+            'fridge': [],
+            'correct_cooker': '',
+            'correct_recipe': [],
+            'min_cook_time': ,
+            'max_cook_time': ,
+            'name': ''
     }
 
 def update_pantry(item, inventory):
@@ -61,7 +186,7 @@ def cook_job(inventory, level):
                             elif cooktime != 'back' and ingreds != level_content[str(level)]['correct_recipe']:
                                 print('Incorrect ingredients. Try again.')
                         elif cooktime != 'back':
-                            print('Incorrect cooker.')
+                            print('Incorrect cooking instrument.')
                 else:
                     print("You don't have " + item_to_cook + '.')
 
@@ -73,10 +198,8 @@ clear()
 print('''Pycook is a text-based cooking game written in Python.
 Players take the role of a personal chef cooking for VIP clients. As the game progresses, the dishes gradually become more difficult.\n\n
 Players will start each level at the kitchen counter. From here you may access the fridge where you'll find your cold ingredients,
-the pantry where you'll find spices/seasonings along with your cooking utensils, and the cook space which includes a stovetop and oven.\n\n
-The chef must use his or her own intuition to choose the proper ingredients, seasonings, and cook times for each of the dishes.
-If the chef ruins the dish, they will be allowed up to 5 attempts to remake the dish. If the dish is not properly made in 5 attempts, the chef will be fired.
-A chef who is fired must start from level 1 and work his or her way back up to earn the respect of the clients.\n''')
+the pantry where you'll find dry ingredients and the cook space which will include a stovetop and oven.\n\n
+The chef must use his or her own intuition to choose the proper ingredients, seasonings, and cook times for each of the dishes.\n\n''')
 
 play = input('Press enter to begin.')
 if play == '':
