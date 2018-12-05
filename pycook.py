@@ -195,11 +195,13 @@ def update_fridge(item, inventory):
         print('You take the ' + item)
 
 def cook_job(inventory, level):
-        ingreds = []
-        item_to_cook = ''
-        cooker = ''
+    ingreds = []
+    item_to_cook = ''
+    cooker = ''
+    while True:
         cooker = input('What would you like to cook on, stove or oven? ').lower()
-        while True:
+        while True and item_to_cook != 'back':
+            item_to_cook = ''
             if cooker == 'stove' or cooker == 'oven':
                 dish_success = False
                 while item_to_cook != 'back' and not dish_success:
@@ -225,10 +227,13 @@ def cook_job(inventory, level):
                                     print('Incorrect ingredients. Try again.')
                             elif cooktime != 'back':
                                 print('Incorrect cooking instrument.')
+                    elif item_to_cook == 'back':
+                        break
                     else:
-                        print("You don't have " + item_to_cook + '.')    
+                        print("You don't have " + item_to_cook + '.')
             else:
                 print('Please select either oven or stove.')
+                break
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
