@@ -213,6 +213,8 @@ def cook_job(inventory, level):
             global retain_inventory
             retain_inventory = True
             break
+        elif cooker == 'help':
+            help()
         item_to_cook = ''
         while not dish_success and item_to_cook != 'back':
             if cooker == 'stove' or cooker == 'oven':
@@ -227,7 +229,7 @@ def cook_job(inventory, level):
                     elif item_to_cook == 'cook':
                         cooktime = ''
                         while cooktime != 'back' and not dish_success:
-                            cooktime = input('How long would you like to cook your dish for? (in minutes) Type "back" to go back. ')
+                            cooktime = input('How long would you like to cook your dish for? (in minutes). ')
                             if cooker == level_content[str(level)]['correct_cooker']:
                                 ingreds.sort()
                                 if ingreds == level_content[str(level)]['correct_recipe']:
@@ -239,8 +241,10 @@ def cook_job(inventory, level):
                                         print('The dish is burnt! Try again.')
                                     else:
                                         print('The dish is undercooked. Try again.')
-                                elif cooktime != 'back' and ingreds != level_content[str(level)]['correct_recipe']:
+                                elif cooktime != 'back' and cooktime != 'help' and ingreds != level_content[str(level)]['correct_recipe']:
                                     print('Incorrect ingredients. Try again.')
+                                elif cooktime == 'help':
+                                    help()
                             elif cooktime != 'back':
                                 print('Incorrect cooking instrument.')
                     elif item_to_cook == 'back':
@@ -255,11 +259,10 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 # 'Help' can be typed from any menu to display the message explaining how the game works.
 def help():
-    print()
-    print('''Choose ingredients by navigating to the fridge/pantry and typing the ingredients you wish to choose from the list of ingredients.
- Once you have these ingredients, navigate to the cook space, choose your cooker, combine the ingredients and set the time.
- Type 'help' at any time to bring up this message again.''')
-    print()
+    print('''\nChoose ingredients by navigating to the fridge/pantry and typing the ingredients you wish to choose from the list of ingredients.
+ Once you have these ingredients, navigate to the cook space, choose your cooker, combine the ingredients and set the time. You may type 'back' at any menu to return
+ to the previous interface.
+ Type 'help' at any time to bring up this message again.\n''')
 
 
 clear()
@@ -297,7 +300,7 @@ while level < max_level:
         if loc == 'fridge':
             while True:
                 if len(fridge) > 0:
-                    print('In the fridge you see ', fridge, "Type 'back' to return.")
+                    print('In the fridge you see ', fridge)
                     cold_item = input('What would you like to take? ').lower()
                 else:
                     print('There is nothing in the fridge.')
@@ -313,7 +316,7 @@ while level < max_level:
         if loc == 'pantry':
             while True:
                 if len(pantry) > 0:
-                    print('In the pantry you see ', pantry, "Type 'back' to return.")
+                    print('In the pantry you see ', pantry)
                     dry_item = input('What would you like to take? ').lower()
                 else:
                     print('There is nothing in the fridge.')
