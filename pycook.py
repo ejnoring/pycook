@@ -1,7 +1,9 @@
-#Final project for Programming for Network Admins
+# Final project for Programming for Network Admins
+# Pycook
 import os
 import time
 
+# Level content contains the data for all 20 levels of the game.
 level_content = {
         '1': {
             'pantry': ['instant ramen', 'chef boyardee', 'potato'],
@@ -184,6 +186,8 @@ level_content = {
             'name': 'Pho'
     }}
 
+# When a player requests an item, run update_pantry or update_fridge to remove the item from the pantry/fridge list and add
+# that item to the player's inventory list
 def update_pantry(item, inventory):
         pantry.remove(item)
         inventory.append(item)
@@ -193,15 +197,24 @@ def update_fridge(item, inventory):
         fridge.remove(item)
         inventory.append(item)
         print('You take the ' + item)
-
+# cook_job contains the cook logic for the game. Players are asked to choose between the oven or the stove. They are then asked what
+# ingredients they would like to add to the pan. Ingredients are moved from a player's inventory list into the 'ingreds' list.
+# Players are then asked to enter the amount of time they would like to cook their dish for.
+# Player's dishes must match the correct_cooker, correct_recipe, and fall between the min and max cook time stated in level_content.
 def cook_job(inventory, level):
     ingreds = []
     item_to_cook = ''
     cooker = ''
-    while True:
+    global dish_success
+    dish_success = False
+    while True and not dish_success:
         cooker = input('What would you like to cook on, stove or oven? ').lower()
-        while True and item_to_cook != 'back':
-            item_to_cook = ''
+        if cooker == 'back':
+            global retain_inventory
+            retain_inventory = True
+            break
+        item_to_cook = ''
+        while not dish_success and item_to_cook != 'back':
             if cooker == 'stove' or cooker == 'oven':
                 dish_success = False
                 while item_to_cook != 'back' and not dish_success:
@@ -209,6 +222,8 @@ def cook_job(inventory, level):
                     if item_to_cook in inventory:
                         ingreds.append(item_to_cook)
                         print('You have put', item_to_cook, 'in the pan.')
+                    elif item_to_cook == 'help':
+                        help()
                     elif item_to_cook == 'cook':
                         cooktime = ''
                         while cooktime != 'back' and not dish_success:
@@ -219,6 +234,7 @@ def cook_job(inventory, level):
                                     if int(cooktime) < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time'] and ingreds == level_content[str(level)]['correct_recipe']:
                                         print("The dish is successful.")
                                         dish_success = True
+                                        retain_inventory = False
                                     elif int(cooktime) > level_content[str(level)]['max_cook_time']:
                                         print('The dish is burnt! Try again.')
                                     else:
@@ -234,9 +250,16 @@ def cook_job(inventory, level):
             else:
                 print('Please select either oven or stove.')
                 break
-
+# Defined function to clear the screen
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
+# 'Help' can be typed from any menu to display the message explaining how the game works.
+def help():
+    print()
+    print('''Choose ingredients by navigating to the fridge/pantry and typing the ingredients you wish to choose from the list of ingredients.
+ Once you have these ingredients, navigate to the cook space, choose your cooker, combine the ingredients and set the time.
+ Type 'help' at any time to bring up this message again.''')
+    print()
 
 
 clear()
@@ -255,12 +278,18 @@ else:
 clear()
 max_level = 20
 level = 1
-
+retain_inventory = False
+# Player's inventories, pantries, and fridges are reinitiallized with every level. Players may navigate between the fridge, pantry,
+# and cook space to gather items for their dishes and to cook their dishes. If a player cooks their dish, and it meets the criteria
+# defined in cook_job, 'level' is incremented by 1 and the loop is reinitiallized with the new data from the next level in level_content
 while level < max_level:
-    inventory = []
-    fridge = level_content[str(level)]['fridge']
-    pantry = level_content[str(level)]['pantry']
-    cook_space = ['stove', 'oven']
+    if retain_inventory != True:
+        inventory = []
+        fridge = level_content[str(level)]['fridge']
+        pantry = level_content[str(level)]['pantry']
+        cook_space = ['stove', 'oven']
+    else:
+        continue
     in_progress = True
     print('Level {}: {}'.format(str(level), level_content[str(level)]['name']))
     while in_progress:
@@ -277,6 +306,8 @@ while level < max_level:
                     update_fridge(cold_item, inventory)
                 elif cold_item == 'back':
                     break
+                elif cold_item == 'help':
+                    help()
                 else:
                     print("That item doesn't exist.")
         if loc == 'pantry':
@@ -291,11 +322,19 @@ while level < max_level:
                     update_pantry(dry_item, inventory)
                 elif dry_item == 'back':
                     break
+                elif dry_item == 'help':
+                    help()
                 else:
                     print("That item doesn't exist.")
+        elif loc == 'help':
+            help()
         elif loc == 'cook space':
             cook_job(inventory, level)
-            level += 1
-            in_progress = False
-            time.sleep(3)
-            clear()
+            if dish_success == True:
+                level += 1
+                in_progress = False
+                time.sleep(3)
+                clear()
+            else:
+                continue
+print('Congratulations! You have beat the game.')
