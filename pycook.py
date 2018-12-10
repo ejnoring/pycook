@@ -233,7 +233,7 @@ def cook_job(inventory, level):
                             if cooker == level_content[str(level)]['correct_cooker']:
                                 ingreds.sort()
                                 if ingreds == level_content[str(level)]['correct_recipe']:
-                                    if int(cooktime) < level_content[str(level)]['max_cook_time'] and int(cooktime) > level_content[str(level)]['min_cook_time'] and ingreds == level_content[str(level)]['correct_recipe']:
+                                    if int(cooktime) <= level_content[str(level)]['max_cook_time'] and int(cooktime) >= level_content[str(level)]['min_cook_time'] and ingreds == level_content[str(level)]['correct_recipe']:
                                         print("The dish is successful.")
                                         dish_success = True
                                         retain_inventory = False
