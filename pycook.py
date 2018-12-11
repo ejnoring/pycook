@@ -186,7 +186,7 @@ level_content = {
             'name': 'Pho'
     }}
 
-# When a player requests an item, run update_pantry or update_fridge to remove the item from the pantry/fridge list and add
+# When a player requests an item, run update_kitchen_storage to remove the item from the pantry/fridge list and add
 # that item to the player's inventory list
 def update_kitchen_storage(storage, item, inventory):
         if storage == fridge:
@@ -195,7 +195,7 @@ def update_kitchen_storage(storage, item, inventory):
         elif storage == pantry:
             pantry.remove(item)
             inventory.append(item)
-        print('You take the ' + item + '.')
+        print('\nYou take the ' + item + '.')
 # cook_job contains the cook logic for the game. Players are asked to choose between the oven or the stove. They are then asked what
 # ingredients they would like to add to the pan. Ingredients are moved from a player's inventory list into the 'ingreds' list.
 # Players are then asked to enter the amount of time they would like to cook their dish for.
@@ -207,28 +207,45 @@ def cook_job(inventory, level):
     global dish_success
     dish_success = False
     while True and not dish_success:
-        cooker = input('What would you like to cook on, stove or oven? ').lower()
+        cooker = input('\nWhat would you like to cook on, stove or oven? ').lower()
         if cooker == 'back':
             global retain_inventory
             retain_inventory = True
             break
         elif cooker == 'help':
             help()
+        elif cooker == 'inventory':
+            show_inventory()
         item_to_cook = ''
         while not dish_success and item_to_cook != 'back':
             if cooker == 'stove' or cooker == 'oven':
                 dish_success = False
                 while item_to_cook != 'back' and not dish_success:
-                    item_to_cook = input("What ingredients would you like to put in the pan? Enter one at a time. Type 'cook' to begin cooking. ").lower()
+                    item_to_cook = input("\nWhat ingredients would you like to put in the pan? Enter one at a time. Type 'cook' to begin cooking. ").lower()
                     if item_to_cook in inventory:
                         ingreds.append(item_to_cook)
-                        print('You have put', item_to_cook, 'in the pan.')
+                        inventory.remove(item_to_cook)
+                        print('\nYou have put', item_to_cook, 'in the pan.')
+                        if len(inventory) > 0:
+                            print('You still have', inventory, 'in your inventory.')
+                        else:
+                            print("There's nothing in your inventory.")
                     elif item_to_cook == 'help':
                         help()
+                    elif item_to_cook == 'inventory':
+                        show_inventory()
                     elif item_to_cook == 'cook':
                         cooktime = ''
                         while cooktime != 'back' and not dish_success:
-                            cooktime = input('How long would you like to cook your dish for? (in minutes). ')
+                            cooktime = input('\nHow long would you like to cook your dish for? (in minutes). ')
+                            if cooktime != 'back':
+                                try:
+                                    int(cooktime)
+                                except:
+                                    print('Only numbers please.')
+                                    break
+                            else:
+                                continue
                             if cooker == level_content[str(level)]['correct_cooker']:
                                 ingreds.sort()
                                 if ingreds == level_content[str(level)]['correct_recipe']:
@@ -260,8 +277,14 @@ def clear():
 def help():
     print('''\nChoose ingredients by navigating to the fridge/pantry and typing the ingredients you wish to choose from the list of ingredients.
  Once you have these ingredients, navigate to the cook space, choose your cooker, combine the ingredients and set the time. You may type 'back' at any menu to return
- to the previous interface.
+ to the previous interface. Typing 'inventory' at any screen will bring up a list of your current inventory.
  Type 'help' at any time to bring up this message again.\n''')
+ # Displays a players inventory
+def show_inventory():
+    if len(inventory) > 0:
+        print('\nYou have', str(inventory) + '.\n')
+    else:
+        print('There is nothing in your inventory.')
 
 
 clear()
@@ -269,13 +292,12 @@ print('''Pycook is a text-based cooking game written in Python.
 Players take the role of a personal chef cooking for VIP clients. As the game progresses, the dishes gradually become more difficult.\n\n
 Players will start each level at the kitchen counter. From here you may access the fridge where you'll find your cold ingredients,
 the pantry where you'll find dry ingredients and the cook space which will include a stovetop and oven.\n\n
-The chef must use his or her own intuition to choose the proper ingredients, seasonings, and cook times for each of the dishes.\n\n''')
+The chef must use his or her own intuition to choose the proper ingredients, seasonings, and cook times for each of the dishes.\n\n
+Type 'help' at any time to bring up a help menu and 'inventory' to bring up your current inventory.\n\n''')
 
 play = input('Press enter to begin.')
-if play == '':
-    pass
-else:
-    pass
+if play == '': pass
+else: pass
 
 clear()
 max_level = 20
@@ -295,12 +317,12 @@ while level < max_level:
     in_progress = True
     print('Level {}: {}'.format(str(level), level_content[str(level)]['name']))
     while in_progress:
-        loc = input('You are at the kitchen counter. You see the fridge, pantry, and cook space. Where would you like to go? ')
+        loc = input('\nYou are at the kitchen counter. You see the fridge, pantry, and cook space. Where would you like to go? ')
         if loc == 'fridge':
             while True:
                 if len(fridge) > 0:
                     print('In the fridge you see ', fridge)
-                    item = input('What would you like to take? ').lower()
+                    item = input('\nWhat would you like to take? ').lower()
                 else:
                     print('There is nothing in the fridge.')
                     break
@@ -310,13 +332,15 @@ while level < max_level:
                     break
                 elif item == 'help':
                     help()
+                elif item == 'inventory':
+                    show_inventory()
                 else:
                     print("That item doesn't exist.")
         if loc == 'pantry':
             while True:
                 if len(pantry) > 0:
                     print('In the pantry you see ', pantry)
-                    item = input('What would you like to take? ').lower()
+                    item = input('\nWhat would you like to take? ').lower()
                 else:
                     print('There is nothing in the fridge.')
                     break
@@ -326,10 +350,14 @@ while level < max_level:
                     break
                 elif item == 'help':
                     help()
+                elif item == 'inventory':
+                    show_inventory()
                 else:
                     print("That item doesn't exist.")
         elif loc == 'help':
             help()
+        elif loc == 'inventory':
+            show_inventory()
         elif loc == 'cook space':
             cook_job(inventory, level)
             if dish_success == True:
