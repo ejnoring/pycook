@@ -188,15 +188,14 @@ level_content = {
 
 # When a player requests an item, run update_pantry or update_fridge to remove the item from the pantry/fridge list and add
 # that item to the player's inventory list
-def update_pantry(item, inventory):
-        pantry.remove(item)
-        inventory.append(item)
-        print('You take the ' + item)
-
-def update_fridge(item, inventory):
-        fridge.remove(item)
-        inventory.append(item)
-        print('You take the ' + item)
+def update_kitchen_storage(storage, item, inventory):
+        if storage == fridge:
+            fridge.remove(item)
+            inventory.append(item)
+        elif storage == pantry:
+            pantry.remove(item)
+            inventory.append(item)
+        print('You take the ' + item + '.')
 # cook_job contains the cook logic for the game. Players are asked to choose between the oven or the stove. They are then asked what
 # ingredients they would like to add to the pan. Ingredients are moved from a player's inventory list into the 'ingreds' list.
 # Players are then asked to enter the amount of time they would like to cook their dish for.
@@ -301,15 +300,15 @@ while level < max_level:
             while True:
                 if len(fridge) > 0:
                     print('In the fridge you see ', fridge)
-                    cold_item = input('What would you like to take? ').lower()
+                    item = input('What would you like to take? ').lower()
                 else:
                     print('There is nothing in the fridge.')
                     break
-                if cold_item in fridge:
-                    update_fridge(cold_item, inventory)
-                elif cold_item == 'back':
+                if item in fridge:
+                    update_kitchen_storage(fridge, item, inventory)
+                elif item == 'back':
                     break
-                elif cold_item == 'help':
+                elif item == 'help':
                     help()
                 else:
                     print("That item doesn't exist.")
@@ -317,15 +316,15 @@ while level < max_level:
             while True:
                 if len(pantry) > 0:
                     print('In the pantry you see ', pantry)
-                    dry_item = input('What would you like to take? ').lower()
+                    item = input('What would you like to take? ').lower()
                 else:
                     print('There is nothing in the fridge.')
                     break
-                if dry_item in pantry:
-                    update_pantry(dry_item, inventory)
-                elif dry_item == 'back':
+                if item in pantry:
+                    update_kitchen_storage(pantry, item, inventory)
+                elif item == 'back':
                     break
-                elif dry_item == 'help':
+                elif item == 'help':
                     help()
                 else:
                     print("That item doesn't exist.")
