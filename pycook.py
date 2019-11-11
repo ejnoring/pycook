@@ -367,4 +367,4 @@ while level < max_level:
                 clear()
             else:
                 continue
-print('Congratulations! You have beat the game. Now go cook something in real life.')
+print('Congratulations! You have beat the game.')
